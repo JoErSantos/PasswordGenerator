@@ -65,6 +65,7 @@ h1{
   width: 50%;
   height: 100%;
   border-radius: 5px;
+  transition: all ease 0.5s;
 }
 
 input[type="range"] {
@@ -115,4 +116,42 @@ input[type="range"]::-moz-range-thumb {
   transition: .2s ease-in-out;
 }
 
+.label-container{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.length-label label{
+  font-weight: bold;
+}
+
+#generate-password-btn{
+  color: white;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  background-color: #3961c5;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  transition: all ease-out 0.2s;
+}
+#generate-password-btn:hover{
+  background-color: #1d1f20;
+  transition: all ease-in 0.2s;
+}
+
+.material-icons{
+  cursor: pointer;
+  transition: all ease-out 0.2s;
+}
+
+.material-icons:hover{
+  color: #0079ff;
+  transform: scale(1.2);
+  transition: all ease-in 0.2s;
+}
 
