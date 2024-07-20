@@ -1,11 +1,16 @@
 let sliderEl: HTMLInputElement;
-let lengthLabel: HTMLElement; 
+
+let lengthLabel: HTMLElement;
+
 let lowerCheck: HTMLInputElement;
 let upperCheck: HTMLInputElement;
 let numberCheck: HTMLInputElement;
 let symbolCheck: HTMLInputElement;
+
 let passwordContainer: HTMLInputElement;
 let generateBtn: HTMLInputElement;
+let copyBtn: HTMLElement;
+
 let securityPercentage: HTMLElement;
 
 let passwordLength: number = 0;
@@ -13,7 +18,8 @@ let passwordLength: number = 0;
 let password: string = "";
 
 export function setElements(range: HTMLInputElement, label: HTMLElement, lower: HTMLInputElement, upper: HTMLInputElement,
-  number: HTMLInputElement, symbol: HTMLInputElement, passbox: HTMLInputElement, generate: HTMLInputElement, bar: HTMLElement){
+  number: HTMLInputElement, symbol: HTMLInputElement, passbox: HTMLInputElement, generate: HTMLInputElement, bar: HTMLElement,
+  copy: HTMLElement){
   sliderEl = range;
   lengthLabel = label;
   lowerCheck = lower;
@@ -23,6 +29,7 @@ export function setElements(range: HTMLInputElement, label: HTMLElement, lower: 
   passwordContainer = passbox;
   generateBtn = generate;
   securityPercentage = bar;
+  copyBtn = copy;
   
   if(sliderEl){
     sliderFill(null)
@@ -38,6 +45,8 @@ export function setElements(range: HTMLInputElement, label: HTMLElement, lower: 
   upperCheck.addEventListener("input", () => fillBar())
   numberCheck.addEventListener("input", () => fillBar())
   symbolCheck.addEventListener("input", () => fillBar())
+
+  copyBtn.addEventListener("click", ()=> copyPassword())
   generateBtn.addEventListener("click", () => createPassword())
 }
 
@@ -85,25 +94,28 @@ function createPassword(){
     }
     passwordContainer.value = password;
   }
+  else{
+    alert("Select at least one type of character to include");
+  }
 }
 
 function fillBar(){
   let percentage = (passwordLength / 25) * 80;
   let color = '';
   if(lowerCheck.checked){
-    percentage += 5;
+    percentage *= 1.15;
   }
   if(upperCheck.checked){
-    percentage += 5;
+    percentage *= 1.15;
   }
   if(numberCheck.checked){
-    percentage += 5;
+    percentage *= 1.15;
   }
   if(symbolCheck.checked){
-    percentage += 5;
+    percentage *= 1.15;
   }
 
-  if(passwordLength < 8){
+  if(passwordLength <= 8){
     percentage = 20
   }
   if(percentage <= 35){
@@ -116,6 +128,19 @@ function fillBar(){
     color = "#3961c5"
   }
 
+  if(percentage > 100)
+    percentage = 100;
+
   securityPercentage.style.width = `${percentage}%`;
   securityPercentage.style.backgroundColor = color;
+}
+
+function copyPassword(){
+  if(password != ""){
+    navigator.clipboard.writeText(password);
+    alert("Password copied");
+  }
+  else{
+    alert("Generate a password first");
+  }
 }

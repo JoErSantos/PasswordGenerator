@@ -50,6 +50,7 @@ h1{
   all: unset;
   font-weight:600;
   background-color: none;
+  width: 100%;
 }
 
 .bar-container{

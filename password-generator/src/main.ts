@@ -47,5 +47,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 setElements(document.querySelector("#password-length")!,document.querySelector("#length")!,
   document.querySelector("#lowcase-check")!,document.querySelector("#uppcase-check")!,
   document.querySelector("#number-check")!,document.querySelector("#symbols-check")!,
-  document.querySelector("#passbox")!,document.querySelector("#generate-password-btn")!,document.querySelector("#bar")!)
+  document.querySelector("#passbox")!,document.querySelector("#generate-password-btn")!,document.querySelector("#bar")!,
+  document.querySelector("#copyIcon")!)
 
+//copyIcon
